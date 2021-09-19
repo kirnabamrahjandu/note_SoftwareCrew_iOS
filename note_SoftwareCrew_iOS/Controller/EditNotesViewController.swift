@@ -21,6 +21,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet var lblLong: UILabel!
+    @IBOutlet weak var locationBtn: UIButton!
     var recordingSession:AVAudioSession!
     var audioRecoreder:AVAudioRecorder!
     var audioPlayer:AVAudioPlayer!
@@ -66,6 +67,14 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             textView.text = ""
         }
        
+        if(UserDefaults.standard.value(forKey: "userLat") != nil){
+            let userLat = UserDefaults.standard.value(forKey: "userLat")
+            let userLng = UserDefaults.standard.value(forKey: "userLong")
+            latitudeString = "\(userLat!)"
+            longitudeString = "\(userLng!)"
+            locationBtn.setTitle("Lat : " + latitudeString + " , " + "Long : " + longitudeString, for: .normal)
+            
+        }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {

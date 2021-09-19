@@ -258,6 +258,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lblLong" destination="awO-eT-e66" id="J1J-58-pbV"/>
+                        <outlet property="locationBtn" destination="4d9-gr-dWs" id="Nnb-uJ-n8W"/>
                         <outlet property="myTableView" destination="CHP-bW-GOT" id="k9X-NF-MVJ"/>
                         <outlet property="notesImageView" destination="mvf-8I-KrM" id="XZS-m9-qxN"/>
                         <outlet property="recordBtn" destination="hs2-66-fPr" id="kfU-Oh-Syx"/>
@@ -277,13 +278,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dHu-HA-NC2">
-                                <rect key="frame" x="0.0" y="88" width="414" height="785"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dHu-HA-NC2">
+                                <rect key="frame" x="0.0" y="88" width="428" height="804"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GHX-69-jYh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dHu-HA-NC2" firstAttribute="leading" secondItem="GHX-69-jYh" secondAttribute="leading" id="Dgc-KT-9wx"/>
+                            <constraint firstItem="dHu-HA-NC2" firstAttribute="top" secondItem="GHX-69-jYh" secondAttribute="top" id="Jil-9H-nxx"/>
+                            <constraint firstItem="GHX-69-jYh" firstAttribute="bottom" secondItem="dHu-HA-NC2" secondAttribute="bottom" id="YRl-lT-T78"/>
+                            <constraint firstItem="GHX-69-jYh" firstAttribute="trailing" secondItem="dHu-HA-NC2" secondAttribute="trailing" id="d8H-Ii-Jzn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="QZH-vi-gdX"/>
                     <connections>

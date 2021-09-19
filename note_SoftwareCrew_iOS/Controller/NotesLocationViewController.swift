@@ -17,6 +17,7 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
     var longitude:Double?
     let regionRadius:CLLocationDistance = 300
     let locationMAnager = CLLocationManager()
+    var userLocation:CLLocation!
     @IBOutlet weak var myMapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,5 +27,16 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         locationManager.startUpdatingLocation()
         myMapView.showsUserLocation = true
         
+    }
+    //MARK :- Location manager Delegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        userLocation = locations[0]
+        longitude = (Double(userLocation.coordinate.longitude) * 10000000).rounded() / 10000000
+        latitude = (Double(userLocation.coordinate.latitude) * 10000000).rounded() / 10000000
+        UserDefaults.standard.set(latitude, forKey: "userLat")
+        UserDefaults.standard.set(longitude, forKey: "userLong")
+        locationManager.stopUpdatingLocation()
+        print(latitude!)
+        print(longitude!)
     }
 }
