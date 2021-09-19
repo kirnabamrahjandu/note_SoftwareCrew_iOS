@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1EG-Sb-euU">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -118,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="871" y="141"/>
         </scene>
-        <!--Edit Notes-->
+        <!--Edit Notes View Controller-->
         <scene sceneID="Y4W-ml-K6k">
             <objects>
                 <viewController id="Nqh-aF-8NJ" customClass="EditNotesViewController" customModule="note_SoftwareCrew_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -248,7 +249,7 @@
                             <constraint firstItem="mvf-8I-KrM" firstAttribute="top" secondItem="4d9-gr-dWs" secondAttribute="bottom" constant="10" id="vjz-ly-MXF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Notes" id="0vd-lq-obm">
+                    <navigationItem key="navigationItem" id="0vd-lq-obm">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Ho1-gv-PGd">
                             <connections>
                                 <action selector="savenotes:" destination="Nqh-aF-8NJ" id="Ktp-ro-Jic"/>

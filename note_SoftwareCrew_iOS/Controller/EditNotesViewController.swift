@@ -19,9 +19,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var notesImageView: UIImageView!
     @IBOutlet weak var recordBtn: UIButton!
-    @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var myTableView: UITableView!
-    @IBOutlet weak var lblLat: UILabel!
     @IBOutlet var lblLong: UILabel!
     var recordingSession:AVAudioSession!
     var audioRecoreder:AVAudioRecorder!
@@ -29,12 +27,10 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     var numberOfRecords:Int = 0
     var latitudeString:String = ""
     var longitudeString:String = ""
-    // MARK: -- variables
     var note:Note!
     var notebook : Notebook?
     var userIsEditing = true
     var old = true
-    // MARK: -- database
     var context:NSManagedObjectContext!
     
     override func viewDidLoad() {
@@ -60,23 +56,16 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         context = appDelegate.persistentContainer.viewContext
         
         if (userIsEditing == true) {
-            print("Editing an existing note")
             txttitle.text = note.title!
             textView.text = note.text!
             self.notesImageView.image = UIImage(data: note.image! as Data)
-            // lblLat.text = String(note.lat)
-            // lblLong.text = String(note.long)
-            // btnloc.isHidden = false
+            self.navigationController?.navigationItem.title = "Edit Notes"
         }
         else {
-            print("Going to add a new note to: \(notebook!.name!)")
+            self.navigationController?.navigationItem.title = "Add Notes"
             textView.text = ""
-            //   btnloc.isHidden = true
         }
-        // determineMyCurrentLocation()
-        
-        
-        // Do any additional setup after loading the view.
+       
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -96,7 +85,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         pickerController.delegate = self
         pickerController.allowsEditing = true
         
-        let alertController = UIAlertController(title: "Add an Image", message: "Choose From", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Add Image", message: "Choose from", preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             pickerController.sourceType = .camera
@@ -132,7 +121,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //determineMyCurrentLocation()
     }
     
     
@@ -199,8 +187,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     
     @IBAction func savenotes(_ sender: UIBarButtonItem) {
         
-        
-        // determineMyCurrentLocation()
         if (textView.text!.isEmpty) {
             print("Please enter some text")
             return

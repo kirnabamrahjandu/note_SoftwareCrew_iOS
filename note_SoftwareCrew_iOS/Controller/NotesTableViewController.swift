@@ -14,7 +14,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     var filteredArray = [String]()
     var searchController = UISearchController()
     var resultsController = UITableViewController()
-    //-- Variables
     var lati: Double = 0
     var longi: Double = 0
     var notebook : Notebook!
@@ -170,12 +169,8 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     func getNotesByTitle() {
-        // 1. get notes from the database
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "notebook = %@", notebook)
-        //fetchRequest.predicate = NSPredicate(format: "notebook.name = %@", notebook.name)
-        // fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
         do {
             self.notes = try context.fetch(fetchRequest)
         }
@@ -220,10 +215,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     func getNotesByDateOldest() {
         // 1. get notes from the database
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
-        //           fetchRequest.predicate = NSPredicate(format: "notebook = %@", notebook)
-        //           //fetchRequest.predicate = NSPredicate(format: "notebook.name = %@", notebook.name)
-        //           fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateAdded", ascending: true)]
-        
         do {
             self.notes = try context.fetch(fetchRequest)
         }
@@ -304,9 +295,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        // This function is called:
-        // - after viewDidLoad (the first time)
-        // - after coming "back" to this screen
         searchController.searchBar.autocapitalizationType = .none
         
         searchController = UISearchController(searchResultsController: resultsController)
@@ -317,7 +305,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         // 1. set up database variables
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
-        print("Welcome to the notes controller")
         self.getNotesByDateRecent()
         for note in self.notes {
             print("\(note.dateAdded!) \(note.text!)")
