@@ -170,8 +170,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             
         }
         else{
-            
-            //stop recording
             audioRecoreder.stop()
             audioRecoreder = nil
             
