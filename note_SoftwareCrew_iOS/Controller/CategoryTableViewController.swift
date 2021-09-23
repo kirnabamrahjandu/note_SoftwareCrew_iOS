@@ -10,20 +10,16 @@ import CoreData
 class CategoryTableViewController: UITableViewController {
     
     var notebooks:[Notebook] = []
-    // MARK:  CoreData variables
     var context:NSManagedObjectContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.purple
-        // initialize CoreData variables
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
-        // setup array of notebooks
         getAllNotebooks()
     }
-    
-    // MARK: - Table view data source
-    
+    //MARK :- Buttion actions
     @IBAction func sortButton(_ sender: UIBarButtonItem) {
         let alertBox = UIAlertController(title: "Sort By", message: "", preferredStyle: .alert)
         alertBox.addAction(UIAlertAction(title: "Date", style: .default, handler: { alert -> Void in
@@ -51,7 +47,6 @@ class CategoryTableViewController: UITableViewController {
             if (textField.text?.isEmpty == false) {
                 let notebookSaved = self.addNotebook(notebookName: textField.text!)
                 if (notebookSaved == true) {
-                    // reload the table
                     self.getAllNotebooks()
                     self.tableView.reloadData()
                 }
@@ -68,32 +63,25 @@ class CategoryTableViewController: UITableViewController {
         
     }
     
-    // MARK: database helper functions
+    // MARK: Getting data from database
     func getAllNotebooks() {
-        
-        // setup array of notebooks
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         do {
-            
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error fetching notebooks from database")
+            print("Error")
         }
-        
-        
     }
     
     func getAllNotebooksByTitle() {
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
         do {
-            
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error fetching notebooks from database")
+            print("Error")
         }
     }
     
@@ -101,11 +89,10 @@ class CategoryTableViewController: UITableViewController {
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
         do {
-            
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error fetching notebooks from database")
+            print("Error")
         }
     }
     
@@ -115,34 +102,30 @@ class CategoryTableViewController: UITableViewController {
         notebook.setValue(Date(), forKey:"dateCreated")
         do {
             try self.context.save()
-            print("notebook saved!")
             return true
             
         }
         catch {
-            print("error while trying to save a new notebook")
+            print("error")
         }
         
         return false
         
     }
+    // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notebooks.count
     }
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = notebooks[indexPath.row].name!
         return cell
     }
-    
-    // Override to support editing the table view.
+    //MARK:- Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let i = indexPath.row
@@ -157,7 +140,7 @@ class CategoryTableViewController: UITableViewController {
                 print("Deleted!")
             }
             catch {
-                print("error while commiting notebook delete")
+                print("error")
             }
             
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -165,7 +148,7 @@ class CategoryTableViewController: UITableViewController {
         }
         else if editingStyle == .insert {
             
-        }    
+        }
     }
     
     

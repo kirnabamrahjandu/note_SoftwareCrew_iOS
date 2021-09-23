@@ -270,7 +270,7 @@
             </objects>
             <point key="canvasLocation" x="1629" y="141"/>
         </scene>
-        <!--Location-->
+        <!--User Location-->
         <scene sceneID="aQd-8N-itc">
             <objects>
                 <viewController id="Uhz-3Y-UxD" customClass="NoteLocationViewController" customModule="note_SoftwareCrew_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -291,7 +291,7 @@
                             <constraint firstItem="GHX-69-jYh" firstAttribute="trailing" secondItem="dHu-HA-NC2" secondAttribute="trailing" id="d8H-Ii-Jzn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Location" id="QZH-vi-gdX"/>
+                    <navigationItem key="navigationItem" title="User Location" id="QZH-vi-gdX"/>
                     <connections>
                         <outlet property="myMapView" destination="dHu-HA-NC2" id="dYL-Yl-zSV"/>
                     </connections>
