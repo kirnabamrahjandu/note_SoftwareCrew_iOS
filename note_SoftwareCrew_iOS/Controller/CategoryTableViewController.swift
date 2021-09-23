@@ -51,15 +51,9 @@ class CategoryTableViewController: UITableViewController {
     }
 
     @IBAction func AddNotesBtn(_ sender: UIBarButtonItem) {
-    // 1. Create a popup
     let alertBox = UIAlertController(title: "Add Category", message: "", preferredStyle: .alert)
-    
-    
-    // 2. Add Save and Cancel buttons
     alertBox.addAction(UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
         let textField = alertBox.textFields![0] as UITextField
-        
-        
         if (textField.text?.isEmpty == false) {
             let notebookSaved = self.addNotebook(notebookName: textField.text!)
             if (notebookSaved == true) {
