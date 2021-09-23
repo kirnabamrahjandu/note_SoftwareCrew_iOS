@@ -67,6 +67,9 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             textView.text = ""
         }
        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if(UserDefaults.standard.value(forKey: "userLat") != nil){
             let userLat = UserDefaults.standard.value(forKey: "userLat")
             let userLng = UserDefaults.standard.value(forKey: "userLong")
