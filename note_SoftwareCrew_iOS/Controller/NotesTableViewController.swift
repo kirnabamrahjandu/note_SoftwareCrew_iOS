@@ -70,19 +70,14 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         let notebook = Notebook(context: self.context)
         notebook.name = notebookName
         notebook.setValue(Date(), forKey:"dateCreated")
-        
-        //notebook.dateCreated = Date()
-        
         do {
             try self.context.save()
             print("notebook saved!")
             return true
-            
         }
         catch {
             print("error while trying to save a new notebook")
         }
-        
         return false
         
     }
@@ -91,7 +86,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         // setup array of notebooks
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         do {
-            
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
