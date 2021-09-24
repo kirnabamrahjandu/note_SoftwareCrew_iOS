@@ -13,7 +13,6 @@ import MapKit
 import AVFoundation
 
 class EditNotesViewController: UIViewController,  UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
-    
     var locationManager = CLLocationManager()
     @IBOutlet weak var txttitle: UITextField!
     @IBOutlet weak var textView: UITextView!
@@ -73,6 +72,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             locationBtn.setTitle("Lat : " + latitudeString + " , " + "Long : " + longitudeString, for: .normal)
         }
     }
+    //MARK:- UITextfield delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
@@ -85,6 +85,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             textView.textColor = UIColor.lightGray
         }
     }
+    //MARK :- Buttion actions
     @IBAction func selectimage(_ sender: UIButton) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
@@ -104,7 +105,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
-    
+    //MARK:- Image picker delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             let imageData = image.pngData() as NSData?
@@ -115,7 +116,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+    //MARK:- Location manager delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         note.lat = userLocation.coordinate.latitude
