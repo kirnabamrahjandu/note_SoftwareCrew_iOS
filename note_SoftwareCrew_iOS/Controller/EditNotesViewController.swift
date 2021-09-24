@@ -40,22 +40,18 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         navigationController?.navigationBar.barTintColor = UIColor.purple
         textView.text = "Enter description"
         textView.textColor = UIColor.lightGray
-        //creating recording session
         recordingSession = AVAudioSession.sharedInstance()
-        
         if let number:Int = UserDefaults.standard.object(forKey: "myNumber ") as? Int {
             numberOfRecords = number
         }
-        
         AVAudioSession.sharedInstance().requestRecordPermission{(hasPermission) in
             if hasPermission{
-                print("You have permission to take picture!")
+                print("Permission given")
             }
         }
         navigationController?.navigationBar.barTintColor = UIColor.purple
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
-        
         if (userIsEditing == true) {
             txttitle.text = note.title!
             textView.text = note.text!
@@ -66,7 +62,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             self.navigationController?.navigationItem.title = "Add Notes"
             textView.text = ""
         }
-       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,25 +87,18 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         }
     }
     @IBAction func selectimage(_ sender: UIButton) {
-        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
-        
         let alertController = UIAlertController(title: "Add Image", message: "Choose from", preferredStyle: .actionSheet)
-        
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             pickerController.sourceType = .camera
             self.present(pickerController, animated: true, completion: nil)
         }
-        
         let photosLibraryAction = UIAlertAction(title: "Photos Library", style: .default) { (action) in
             pickerController.sourceType = .photoLibrary
-            
             self.present(pickerController, animated: true, completion: nil)
-            
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         alertController.addAction(cameraAction)
         alertController.addAction(photosLibraryAction)
@@ -130,12 +118,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
