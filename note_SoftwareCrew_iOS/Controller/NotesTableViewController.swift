@@ -89,7 +89,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error fetching notebooks from database")
+            print("Error")
         }
     }
     func getAllNotebooksByTitle() {
@@ -99,7 +99,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error fetching notebooks from database")
+            print("Error")
         }
     }
     
@@ -221,7 +221,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             
             // remove from databas
             self.context.delete(pageToDelete)
-            
             
             do {
                 try self.context.save()
