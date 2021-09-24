@@ -24,6 +24,12 @@
 	<string>Allow Location Services</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow Microphone to record?</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Allow GPS to track location</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Allow GPS to track location</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Allow GPS to track location</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
