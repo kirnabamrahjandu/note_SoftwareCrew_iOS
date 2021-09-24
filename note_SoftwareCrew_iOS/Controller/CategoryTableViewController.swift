@@ -7,8 +7,13 @@
 
 import UIKit
 import CoreData
+import  CoreLocation
 class CategoryTableViewController: UITableViewController {
     
+    var locationManager:CLLocationManager? = CLLocationManager()
+    var userLocation:CLLocation!
+    var userLat = Double()
+    var userLong = Double()
     var notebooks:[Notebook] = []
     var context:NSManagedObjectContext!
     
@@ -18,6 +23,7 @@ class CategoryTableViewController: UITableViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
         getAllNotebooks()
+        checkForAllowLocation()
     }
     //MARK :- Buttion actions
     @IBAction func sortButton(_ sender: UIBarButtonItem) {
@@ -160,6 +166,29 @@ class CategoryTableViewController: UITableViewController {
             let notesVC = segue.destination as! NotesTableViewController
             let i = (self.tableView.indexPathForSelectedRow?.row)!
             notesVC.notebook = notebooks[i]
+        }
+    }
+  
+    func checkForAllowLocation(){
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager?.requestAlwaysAuthorization()
+        }
+        else if CLLocationManager.authorizationStatus() == .denied {
+            print("denied")
+           
+        }
+        else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager?.requestAlwaysAuthorization()
+            print("authorizedWhenInUse")
+            if(userLat == 0.0){
+                self.locationManager!.startUpdatingLocation()
+            }
+        }
+        else if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            print("authorizedAlways")
+            if(userLat == 0.0){
+                self.locationManager!.startUpdatingLocation()
+            }
         }
     }
 }

@@ -24,13 +24,17 @@
 	<string>Allow Location Services</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow Microphone to record?</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Allow GPS to track location</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Requires access to the camera for capturing photo.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Allow GPS to track location</string>
+    <string>App wants to access your location to determine your current location</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>App wants to access your location to determine your current location</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Allow GPS to track location</string>
-	<key>UIApplicationSceneManifest</key>
+    <string>App wants to access your location</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>App requires access to the camera for capturing photo.</string>
+    <key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>

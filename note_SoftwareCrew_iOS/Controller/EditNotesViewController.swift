@@ -48,6 +48,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
                 print("Permission given")
             }
         }
+        
         navigationController?.navigationBar.barTintColor = UIColor.purple
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
@@ -56,11 +57,14 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             textView.text = note.text!
             self.notesImageView.image = UIImage(data: note.image! as Data)
             self.navigationController?.navigationItem.title = "Edit Notes"
+            locationBtn.setTitle("Lat : " + "\(note.lat)" + " , " + "Long : " + "\(note.long)", for: .normal)
         }
         else {
             self.navigationController?.navigationItem.title = "Add Notes"
             textView.text = ""
         }
+        UserDefaults.standard.setValue(nil, forKey: "userLat")
+        UserDefaults.standard.setValue(nil, forKey: "userLong")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -186,6 +190,9 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             let imageData = notesImageView.image!.pngData() as NSData?
             note.image = imageData as Data?
             note.notebook = self.notebook
+            note.lat = Double(latitudeString)!
+            note.long = Double(longitudeString)!
+            print("save data is as follows ",note)
         }
         do {
             try context.save()

@@ -30,7 +30,6 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         locationManager!.desiredAccuracy = kCLLocationAccuracyBest
         locationManager!.distanceFilter = kCLDistanceFilterNone
         locationManager!.requestAlwaysAuthorization()
-        locationManager!.allowsBackgroundLocationUpdates = true
         locationManager!.pausesLocationUpdatesAutomatically = false
         locationManager!.delegate = self
     }
@@ -53,7 +52,10 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         userLat = (Double(userLocation.coordinate.latitude) * 10000000).rounded() / 10000000
         UserDefaults.standard.set(userLat, forKey: "userLat")
         UserDefaults.standard.set(userLong, forKey: "userLong")
-        locationManager!.stopUpdatingLocation()
+        print("Updated lat is ",userLat)
+        print("Updated lng is ",userLong)
+       // myMapView.showsUserLocation = true
+        //locationManager!.stopUpdatingLocation()
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkForAllowLocation()
