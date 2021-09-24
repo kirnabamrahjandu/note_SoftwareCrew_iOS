@@ -235,7 +235,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let path = getDirectory().appendingPathComponent("Recording \(indexPath.row + 1).m4a")
-        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: path)
             audioPlayer.play()

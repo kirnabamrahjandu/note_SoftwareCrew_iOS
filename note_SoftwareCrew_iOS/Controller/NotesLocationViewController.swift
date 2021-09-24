@@ -26,9 +26,8 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         myMapView.showsUserLocation = true
-        
     }
-    //MARK :- Location manager Delegate
+    //MARK :- Core Location manager Delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         userLocation = locations[0]
         longitude = (Double(userLocation.coordinate.longitude) * 10000000).rounded() / 10000000
