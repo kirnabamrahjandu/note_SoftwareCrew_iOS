@@ -261,24 +261,17 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     override func viewWillDisappear(_ animated: Bool) {
         array.removeAll()
     }
-      // In a storyboard-based application, you will often want to do a little preparation before navigation
+      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if (segue.identifier == "editNoteSegue") {
-            
+            if (segue.identifier == "editNoteSegue") {
             let editNoteVC = segue.destination as! EditNotesViewController
-            
             let i = (self.tableView.indexPathForSelectedRow?.row)!
             editNoteVC.note = notes[i]
-            
         }
         else if (segue.identifier == "addNoteSegue") {
-            // person wants to add a new note
             let editNoteVC = segue.destination as! EditNotesViewController
             editNoteVC.userIsEditing = false
             editNoteVC.notebook = self.notebook
-            
         }
     }
 }
