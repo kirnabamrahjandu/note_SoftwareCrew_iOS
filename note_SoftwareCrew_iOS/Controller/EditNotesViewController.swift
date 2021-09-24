@@ -129,7 +129,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     {
         print("Error \(error)")
     }
-    
+    //MARK:- Start recording
     @IBAction func record(_ sender: Any) {
         if  audioRecoreder == nil  {
             numberOfRecords += 1
@@ -165,7 +165,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         }
     }
     
-    
+    //MARK:- Save notes buttion actions
     @IBAction func savenotes(_ sender: UIBarButtonItem) {
         if (textView.text!.isEmpty) {
             return
@@ -216,7 +216,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         return documentDirectory
     }
     
-    //display alert
+    //MARK:- Display alert view
     func displayAlert(title:String,message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
