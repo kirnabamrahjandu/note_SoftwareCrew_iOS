@@ -71,7 +71,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             latitudeString = "\(userLat!)"
             longitudeString = "\(userLng!)"
             locationBtn.setTitle("Lat : " + latitudeString + " , " + "Long : " + longitudeString, for: .normal)
-            
         }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -106,11 +105,9 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         present(alertController, animated: true, completion: nil)
     }
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             let imageData = image.pngData() as NSData?
-            
             self.notesImageView.image = UIImage(data: imageData! as Data)
             self.dismiss(animated: true, completion: nil)
         }
@@ -121,7 +118,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-        
         note.lat = userLocation.coordinate.latitude
         note.long = userLocation.coordinate.longitude
         print("user latitude = \(userLocation.coordinate.latitude)")
@@ -134,30 +130,23 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     }
     
     @IBAction func record(_ sender: Any) {
-        
-        //check if audio recorder is active
         if  audioRecoreder == nil  {
             numberOfRecords += 1
             let filname = getDirectory().appendingPathComponent("Recording \(numberOfRecords).m4a")
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC),AVSampleRateKey: 12000,AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
-            
             // start audio recording
             do {
                 audioRecoreder = try AVAudioRecorder(url: filname,settings: settings)
                 audioRecoreder.delegate = self
                 audioRecoreder.record()
-                
                 recordBtn.setTitle("Stop recording", for: .normal)
-                
             } catch  {
                 displayAlert(title: "Error!", message: "Recording Failed!!")
             }
-            
         }
         else{
             audioRecoreder.stop()
             audioRecoreder = nil
-            
             UserDefaults.standard.set(numberOfRecords,forKey: "myNumber")
             myTableView.reloadData()
             do{
@@ -166,7 +155,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             }
             catch {
                 print("Error saving recording!")
-                
                 // show an alert box with an error message
                 let alertBox = UIAlertController(title: "Error", message: "Error while saving.", preferredStyle: .alert)
                 alertBox.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -178,19 +166,13 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     
     
     @IBAction func savenotes(_ sender: UIBarButtonItem) {
-        
         if (textView.text!.isEmpty) {
-            print("Please enter some text")
             return
         }
-        
-        
         if (userIsEditing == true) {
             note.text = textView.text!
         }
         else {
-            
-            // create a new note in the notebook
             self.note = Note(context:context)
             note.setValue(Date(), forKey:"dateAdded")
             if (txttitle.text!.isEmpty) {
@@ -202,16 +184,11 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             note.text = textView.text!
             let imageData = notesImageView.image!.pngData() as NSData?
             note.image = imageData as Data?
-            
             note.notebook = self.notebook
         }
-        
         do {
             try context.save()
             print("Note Saved!")
-            
-            
-            // show an alert box
             SHOW_ALERT_CONTROLLER_DOUBLE_BUTTON(alertTitle: "Saved!", message: "Save Successfully", btnTitle1: "Cancle", btnTitle2: "OK", viewController: self, completionHandler:{ (response) in
                 if(response == "Button2"){
                     self.navigationController?.popViewController(animated: true)
