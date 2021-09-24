@@ -24,7 +24,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.purple
-        
     }
     @IBAction func sortNotesBtn(_ sender: UIBarButtonItem) {
         let alertBox = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
