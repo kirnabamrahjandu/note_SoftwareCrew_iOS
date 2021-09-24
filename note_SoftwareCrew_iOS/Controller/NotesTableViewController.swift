@@ -93,16 +93,9 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         }
     }
     func getAllNotebooksByTitle() {
-        //fetchRequest.predicate = NSPredicate(format: "notebook.name = %@", notebook.name)
-        // setup array of notebooks
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
-        // Uncomment if you want to sort the list by name
-        // let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
-        // notebookFetchRequest.sortDescriptors = [sortDescriptor]
         do {
-            
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
