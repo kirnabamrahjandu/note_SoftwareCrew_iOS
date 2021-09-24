@@ -196,9 +196,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             })
         }
         catch {
-            print("Error saving note in Edit Note screen")
-            
-            // show an alert box with an error message
             let alertBox = UIAlertController(title: "Error", message: "Error while saving.", preferredStyle: .alert)
             alertBox.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertBox, animated: true, completion: nil)
