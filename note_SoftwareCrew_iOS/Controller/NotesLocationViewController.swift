@@ -35,7 +35,7 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         UserDefaults.standard.set(latitude, forKey: "userLat")
         UserDefaults.standard.set(longitude, forKey: "userLong")
         locationManager.stopUpdatingLocation()
-        print(latitude!)
-        print(longitude!)
+        print("User latitude is ",latitude!)
+        print("User longitude is ",longitude!)
     }
 }

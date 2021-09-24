@@ -137,7 +137,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             print("Error while fetching notes from database")
             dismiss(animated: true, completion: nil)
         }
-        
     }
     func getNotesByTitleDesc() {
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
@@ -152,23 +151,17 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         
     }
     func getNotesByDateRecent() {
-        // 1. get notes from the database
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
-        //fetchRequest.predicate = NSPredicate(format: "notebook = %@", notebook)
-        //fetchRequest.predicate = NSPredicate(format: "notebook.name = %@", notebook.name)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateAdded", ascending: false)]
-        
         do {
             self.notes = try context.fetch(fetchRequest)
         }
         catch{
-            print("Error while fetching notes from database")
+            print("Error fonund while sort")
             dismiss(animated: true, completion: nil)
         }
-        
     }
     func getNotesByDateOldest() {
-        // 1. get notes from the database
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
         do {
             self.notes = try context.fetch(fetchRequest)
@@ -182,14 +175,11 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if tableView == resultsController.tableView{
             return filteredArray.count
         }
@@ -204,9 +194,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         if tableView == resultsController.tableView {
             resultsController.tableView.rowHeight = 60
             let celll = UITableViewCell()
-            
             celll.textLabel?.text = filteredArray[indexPath.row]
-            
             return celll
         }
         else {
@@ -215,7 +203,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.textLabel?.text = notes[indexPath.row].title!
             lati = notes[indexPath.row].lat
             longi = notes[indexPath.row].long
-            
             return cell
         }
         
