@@ -26,12 +26,8 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         navigationController?.navigationBar.barTintColor = UIColor.purple
         
     }
-    
     @IBAction func sortNotesBtn(_ sender: UIBarButtonItem) {
         let alertBox = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
-        
-        
-        // 2. Add Save and Cancel buttons
         alertBox.addAction(UIAlertAction(title: "By date", style: .default, handler: { alert -> Void in
             self.getAllNotebooks()
             self.tableView.reloadData()
@@ -45,16 +41,11 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             self.tableView.reloadData()
         }))
         alertBox.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        // 4. show the alertbox
         self.present(alertBox, animated: true, completion: nil)
     }
     
     @IBAction func addNotesBtn(_ sender: UIBarButtonItem) {
-        // 1. Create a popup
         let alertBox = UIAlertController(title: "Add a Category", message: "Enter the name of note ", preferredStyle: .alert)
-        
-        
-        // 2. Add Save and Cancel buttons
         alertBox.addAction(UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
             let textField = alertBox.textFields![0] as UITextField
             
@@ -69,17 +60,10 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             }
         }))
         alertBox.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // 3. Add a textbox
         alertBox.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
             textField.placeholder = "Enter category name"
         })
-        
-        
-        // 4. show the alertbox
         self.present(alertBox, animated: true, completion: nil)
-        
-        
     }
     
     func addNotebook(notebookName:String) -> Bool {
