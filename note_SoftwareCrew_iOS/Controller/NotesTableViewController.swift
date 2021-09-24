@@ -107,26 +107,13 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         // setup array of notebooks
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
-        
-        // Uncomment if you want to sort the list by name
-        // let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
-        // notebookFetchRequest.sortDescriptors = [sortDescriptor]
-        
-        
-        do {
-            
+         do {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
             print("Error fetching notebooks from database")
         }
     }
-    
-    
-    
-    
-    
-    
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.autocapitalizationType = .none
         filteredArray = array.filter({ (array: String) -> Bool in
@@ -153,12 +140,8 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         
     }
     func getNotesByTitleDesc() {
-        // 1. get notes from the database
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "notebook = %@", notebook)
-        //fetchRequest.predicate = NSPredicate(format: "notebook.name = %@", notebook.name)
-        //fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
-        
         do {
             self.notes = try context.fetch(fetchRequest)
         }
