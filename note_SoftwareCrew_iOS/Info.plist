@@ -27,11 +27,11 @@
     <key>NSCameraUsageDescription</key>
     <string>Requires access to the camera for capturing photo.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>App wants to access your location to determine your current location</string>
+    <string>App wants to access your location to show your current location</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>App wants to access your location to determine your current location</string>
+    <string>App wants to access your location to show your current location</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>App wants to access your location</string>
+    <string>App wants to access your location to show your current location</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>App requires access to the camera for capturing photo.</string>
     <key>UIApplicationSceneManifest</key>
