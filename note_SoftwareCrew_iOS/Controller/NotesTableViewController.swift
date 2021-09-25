@@ -35,14 +35,17 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         let alertBox = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
         alertBox.addAction(UIAlertAction(title: "By date", style: .default, handler: { alert -> Void in
             self.getAllNotebooks()
+            // reload tableview cell
             self.tableView.reloadData()
         }))
         alertBox.addAction(UIAlertAction(title: "Ascending Order", style: .default, handler: { alert -> Void in
             self.getAllNotebooksByTitle()
+            // reload tableview cell
             self.tableView.reloadData()
         }))
         alertBox.addAction(UIAlertAction(title: "Descending order", style: .default, handler: { alert -> Void in
             self.getAllNotebooksByTitleDesc()
+            // reload tableview cell
             self.tableView.reloadData()
         }))
         alertBox.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
@@ -58,8 +61,8 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             if (textField.text?.isEmpty == false) {
                 let notebookSaved = self.addNotebook(notebookName: textField.text!)
                 if (notebookSaved == true) {
-                    // reload the table
                     self.getAllNotebooks()
+                    // reload tableview cell
                     self.tableView.reloadData()
                 }
             }
