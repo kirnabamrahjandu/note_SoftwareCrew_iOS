@@ -26,6 +26,12 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.purple
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        array.removeAll()
+    }
+    
+    //MARK:- Bar Buttion Action
+    
     @IBAction func sortNotesBtn(_ sender: UIBarButtonItem) {
         let alertBox = UIAlertController(title: "Sort", message: "", preferredStyle: .alert)
         alertBox.addAction(UIAlertAction(title: "By date", style: .default, handler: { alert -> Void in
@@ -234,13 +240,12 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
         }
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         searchController.searchBar.autocapitalizationType = .none
-        
         searchController = UISearchController(searchResultsController: resultsController)
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchResultsUpdater = self
@@ -254,15 +259,12 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             print("\(note.dateAdded!) \(note.text!)")
             array.append("Title: \(note.title!) ; Note: \(String(describing: note.text!))")
         }
-        
         searchController.searchBar.autocapitalizationType = .none
         self.getNotesByDateRecent()
         self.tableView.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        array.removeAll()
-    }
+   
       
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if (segue.identifier == "editNoteSegue") {
