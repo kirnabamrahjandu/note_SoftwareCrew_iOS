@@ -49,7 +49,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
                 print("Permission given for audio recording")
             }
         }
-        
         navigationController?.navigationBar.barTintColor = UIColor.purple
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
@@ -145,7 +144,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             numberOfRecords += 1
             let filname = getDirectory().appendingPathComponent("Recording \(numberOfRecords).m4a")
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC),AVSampleRateKey: 12000,AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
-            // start audio recording
             do {
                 audioRecoreder = try AVAudioRecorder(url: filname,settings: settings)
                 audioRecoreder.delegate = self
@@ -171,7 +169,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
                 alertBox.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alertBox, animated: true, completion: nil)
             }
-            recordBtn.setTitle("Make a VoiceNote", for: .normal)
+            recordBtn.setTitle("Make a Voice Note", for: .normal)
         }
     }
     
@@ -217,7 +215,6 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         
         if (userIsEditing == false) {
             self.navigationController?.popViewController(animated: true)
-            //self.dismiss(animated: true, completion: nil)
         }
         
     }
