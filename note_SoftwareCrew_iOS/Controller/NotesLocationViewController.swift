@@ -34,16 +34,6 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         locationManager!.delegate = self
     }
     //MARK :- Core Location manager Delegate
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        userLocation = locations[0]
-//        longitude = (Double(userLocation.coordinate.longitude) * 10000000).rounded() / 10000000
-//        latitude = (Double(userLocation.coordinate.latitude) * 10000000).rounded() / 10000000
-//        UserDefaults.standard.set(latitude, forKey: "userLat")
-//        UserDefaults.standard.set(longitude, forKey: "userLong")
-//        locationManager.stopUpdatingLocation()
-//        print("User latitude is ",latitude!)
-//        print("User longitude is ",longitude!)
-//    }
     
     //MARK:- Location manager Delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
