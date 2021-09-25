@@ -142,7 +142,7 @@ class CategoryTableViewController: UITableViewController {
             self.context.delete(notebookToDelete)
             do {
                 try self.context.save()
-                print("Deleted!")
+                print("Deleted successfully!")
             }
             catch {
                 print("error")
@@ -152,7 +152,7 @@ class CategoryTableViewController: UITableViewController {
             
         }
         else if editingStyle == .insert {
-            
+            //For insert data
         }
     }
     
