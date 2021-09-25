@@ -174,18 +174,18 @@ class CategoryTableViewController: UITableViewController {
             locationManager?.requestAlwaysAuthorization()
         }
         else if CLLocationManager.authorizationStatus() == .denied {
-            print("denied")
+            print("denied by user")
            
         }
         else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager?.requestAlwaysAuthorization()
-            print("authorizedWhenInUse")
+            print(" got authorizedWhenInUse")
             if(userLat == 0.0){
                 self.locationManager!.startUpdatingLocation()
             }
         }
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            print("authorizedAlways")
+            print("got authorizedAlways")
             if(userLat == 0.0){
                 self.locationManager!.startUpdatingLocation()
             }
