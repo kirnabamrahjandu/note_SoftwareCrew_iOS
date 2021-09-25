@@ -197,7 +197,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Configure the cell...
         if tableView == resultsController.tableView {
             resultsController.tableView.rowHeight = 60
             let celll = UITableViewCell()
@@ -213,7 +212,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             return cell
         }
     }
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let i = indexPath.row
