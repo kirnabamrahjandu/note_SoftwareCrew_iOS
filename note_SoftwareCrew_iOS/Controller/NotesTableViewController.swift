@@ -83,7 +83,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         return false
         
     }
-    
+    //MARK:- Core data work
     func getAllNotebooks() {
         // setup array of notebooks
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
@@ -128,6 +128,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         })
         resultsController.tableView.reloadData()
     }
+    //MARK:- Sorting funcations
     
     func getNotesByTitle() {
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
