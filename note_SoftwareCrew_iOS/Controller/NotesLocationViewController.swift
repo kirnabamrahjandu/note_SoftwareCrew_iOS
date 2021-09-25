@@ -58,17 +58,16 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         }
         else if CLLocationManager.authorizationStatus() == .denied {
             print("denied")
-           
         }
         else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager?.requestAlwaysAuthorization()
-           // print("authorizedWhenInUse")
+            print("authorizedWhenInUse")
             if(userLat == 0.0){
                 self.locationManager!.startUpdatingLocation()
             }
         }
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
-           // print("authorizedAlways")
+            print("authorizedAlways")
             if(userLat == 0.0){
                 self.locationManager!.startUpdatingLocation()
             }

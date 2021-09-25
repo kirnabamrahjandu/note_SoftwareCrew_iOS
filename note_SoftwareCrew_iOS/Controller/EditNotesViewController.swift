@@ -46,7 +46,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         }
         AVAudioSession.sharedInstance().requestRecordPermission{(hasPermission) in
             if hasPermission{
-                print("Permission given")
+                print("Permission given for audio recording")
             }
         }
         
