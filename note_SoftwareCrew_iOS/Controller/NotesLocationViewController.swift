@@ -45,10 +45,9 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         userLat = (Double(userLocation.coordinate.latitude) * 10000000).rounded() / 10000000
         UserDefaults.standard.set(userLat, forKey: "userLat")
         UserDefaults.standard.set(userLong, forKey: "userLong")
-        print("Updated lat is ",userLat)
-        print("Updated lng is ",userLong)
-       // myMapView.showsUserLocation = true
-        //locationManager!.stopUpdatingLocation()
+        print("Updated user latitude is ",userLat)
+        print("Updated user longitude is ",userLong)
+       
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkForAllowLocation()
