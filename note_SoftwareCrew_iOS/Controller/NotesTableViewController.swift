@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
-    
     var array = [String]()
     var filteredArray = [String]()
     var searchController = UISearchController()
@@ -56,8 +55,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         let alertBox = UIAlertController(title: "Add a Category", message: "Enter the name of note ", preferredStyle: .alert)
         alertBox.addAction(UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
             let textField = alertBox.textFields![0] as UITextField
-            
-            
             if (textField.text?.isEmpty == false) {
                 let notebookSaved = self.addNotebook(notebookName: textField.text!)
                 if (notebookSaved == true) {
@@ -212,9 +209,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             longi = notes[indexPath.row].long
             return cell
         }
-        
     }
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
