@@ -20,7 +20,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     var notes : [Note] = []
     var context : NSManagedObjectContext!
     var notebooks:[Notebook] = []
-
+    
     //MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +115,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         // setup array of notebooks
         let fetchRequest:NSFetchRequest<Notebook> = Notebook.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
-         do {
+        do {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
@@ -182,7 +182,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         
     }
     
-    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -196,7 +195,6 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
             return notes.count
         }
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
@@ -216,21 +214,15 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         }
         
     }
-  
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
             let i = indexPath.row
             let pageToDelete = notes[i]
             print(pageToDelete.text!)
-            
-            // remove from array
             notes.remove(at: i)
-            
-            // remove from databas
             self.context.delete(pageToDelete)
-            
             do {
                 try self.context.save()
                 print("Deleted!")
@@ -264,10 +256,8 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         self.tableView.reloadData()
     }
     
-   
-      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if (segue.identifier == "editNoteSegue") {
+        if (segue.identifier == "editNoteSegue") {
             let editNoteVC = segue.destination as! EditNotesViewController
             let i = (self.tableView.indexPathForSelectedRow?.row)!
             editNoteVC.note = notes[i]
