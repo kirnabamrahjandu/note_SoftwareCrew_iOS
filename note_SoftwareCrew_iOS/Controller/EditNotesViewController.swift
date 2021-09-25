@@ -33,6 +33,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     var old = true
     var context:NSManagedObjectContext!
     
+    //MARK:- View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
@@ -66,6 +67,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         UserDefaults.standard.setValue(nil, forKey: "userLat")
         UserDefaults.standard.setValue(nil, forKey: "userLong")
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(UserDefaults.standard.value(forKey: "userLat") != nil){
@@ -76,6 +78,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             locationBtn.setTitle("Lat : " + latitudeString + " , " + "Long : " + longitudeString, for: .normal)
         }
     }
+    
     //MARK:- UITextfield delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -109,6 +112,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     //MARK:- Image picker delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
@@ -120,6 +124,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
     //MARK:- Location manager delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
@@ -133,6 +138,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
     {
         print("Error \(error)")
     }
+    
     //MARK:- Start recording
     @IBAction func record(_ sender: Any) {
         if  audioRecoreder == nil  {
