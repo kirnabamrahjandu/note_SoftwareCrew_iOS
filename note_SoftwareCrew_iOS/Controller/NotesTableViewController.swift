@@ -21,6 +21,7 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
     var context : NSManagedObjectContext!
     var notebooks:[Notebook] = []
 
+    //MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.purple
@@ -42,6 +43,8 @@ class NotesTableViewController: UITableViewController, UISearchResultsUpdating {
         alertBox.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
         self.present(alertBox, animated: true, completion: nil)
     }
+    
+    //MARK:- Buttion Action
     
     @IBAction func addNotesBtn(_ sender: UIBarButtonItem) {
         let alertBox = UIAlertController(title: "Add a Category", message: "Enter the name of note ", preferredStyle: .alert)
