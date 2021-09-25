@@ -62,8 +62,6 @@ class CategoryTableViewController: UITableViewController {
         alertBox.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
             textField.placeholder = "Enter category name"
         })
-        
-        
         self.present(alertBox, animated: true, completion: nil)
         
     }
@@ -75,7 +73,7 @@ class CategoryTableViewController: UITableViewController {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error")
+            print("Error while fetching")
         }
     }
     
@@ -86,7 +84,7 @@ class CategoryTableViewController: UITableViewController {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error")
+            print("Error while fetching")
         }
     }
     
@@ -97,7 +95,7 @@ class CategoryTableViewController: UITableViewController {
             self.notebooks = try context.fetch(fetchRequest)
         }
         catch {
-            print("Error")
+            print("Error while fetching")
         }
     }
     
@@ -108,7 +106,6 @@ class CategoryTableViewController: UITableViewController {
         do {
             try self.context.save()
             return true
-            
         }
         catch {
             print("error")
