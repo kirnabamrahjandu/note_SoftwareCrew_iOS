@@ -198,7 +198,7 @@ class EditNotesViewController: UIViewController,  UINavigationControllerDelegate
             note.notebook = self.notebook
             note.lat = Double(latitudeString)!
             note.long = Double(longitudeString)!
-            print("save data is as follows ",note)
+            //print("save data is as follows ",note)
         }
         do {
             try context.save()

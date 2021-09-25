@@ -17,6 +17,8 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
     var userLat = Double()
     var userLong = Double()
     @IBOutlet weak var myMapView: MKMapView!
+    
+    //MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager!.delegate = self
@@ -26,6 +28,7 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         myMapView.showsUserLocation = true
         self.setLocationAccuracy()
     }
+    //MARK:- Set location accuracy
     func setLocationAccuracy(){
         locationManager!.desiredAccuracy = kCLLocationAccuracyBest
         locationManager!.distanceFilter = kCLDistanceFilterNone
