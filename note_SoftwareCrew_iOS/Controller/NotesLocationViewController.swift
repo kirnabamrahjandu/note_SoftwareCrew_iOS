@@ -36,7 +36,6 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
         locationManager!.pausesLocationUpdatesAutomatically = false
         locationManager!.delegate = self
     }
-    //MARK :- Core Location manager Delegate
     
     //MARK:- Location manager Delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -55,6 +54,7 @@ class NoteLocationViewController: UIViewController,CLLocationManagerDelegate,MKM
     func checkForAllowLocation(){
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager?.requestAlwaysAuthorization()
+            print("not determined")
         }
         else if CLLocationManager.authorizationStatus() == .denied {
             print("denied")
