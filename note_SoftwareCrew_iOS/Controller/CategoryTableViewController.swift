@@ -42,7 +42,6 @@ class CategoryTableViewController: UITableViewController {
         }))
         
         alertBox.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        
         self.present(alertBox, animated: true, completion: nil)
     }
     
@@ -168,7 +167,8 @@ class CategoryTableViewController: UITableViewController {
             notesVC.notebook = notebooks[i]
         }
     }
-  
+  //MARK :- Check for location permission
+    
     func checkForAllowLocation(){
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager?.requestAlwaysAuthorization()
